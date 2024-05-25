@@ -37,11 +37,11 @@ const uploadAndStoreCsvData = async (req, res) => {
                 await CsvData.create(transactionInfo);
             }
         });
-        const allEntries = await CsvData.find({})
+        const allTransaction = await CsvData.find({})
             return res.status(200).json({
                 success: true,
                 message: "Data Added Successfully!!",
-                data: allEntries
+                data: allTransaction
             });
         });
     } catch (error) {
@@ -53,7 +53,33 @@ const uploadAndStoreCsvData = async (req, res) => {
     }
 };
 
-const getAssetBalanceAtTimestamp = async (req, res) => {};
+const getAssetBalanceAtTimestamp = async (req, res) => {
+    try {
+        const timestamp = req.body.timestamp
+        const allTransaction = await CsvData.find({})
+        const req_utc_timestamp = new Date(timestamp)
+        const filteredTransctions = allTransaction.filter(transaction => transaction.utc_timestamp <  req_utc_timestamp)
+        const coins = {};
+        filteredTransctions.map(transaction => {
+            const base_coin = transaction.market.split('/')[0];
+            if(coins[base_coin]){
+                coins[base_coin] += transaction.operation === 'Buy'?transaction.buy_sell_amt:-transaction.buy_sell_amt;
+            }else{
+                coins[base_coin] = transaction.operation === 'Buy'?transaction.buy_sell_amt:-transaction.buy_sell_amt;
+            }
+        })
+        return res.json({
+            message: "success",
+            coins
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Internal Server Error",
+
+        })
+    }
+};
 
 module.exports = {
     uploadAndStoreCsvData,
