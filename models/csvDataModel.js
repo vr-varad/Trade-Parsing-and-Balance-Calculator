@@ -4,8 +4,8 @@ const {Schema} = mongoose
 
 const csvDataSchema = new Schema({
     user_id: {
-        type: Schema.Types.ObjectId,
-        ref: 'user'
+        type: String,
+        required: true
     },
     utc_timestamp: {
         type: Date,
