@@ -28,13 +28,15 @@ app.use(express.urlencoded({extended: true}));
 app.use('/api/v1',dataRoutes(upload));
 app.get('/',(req,res)=>{
     return res.send(
-        `<h1>Welcome to the Data API</h1>
-        <p>This is the root endpoint of the Data API.</p>
+        `<h1>Welcome to the Trade-Parsing-and-Balance-Calculator</h1>
+        <p>This is the root endpoint of the Trade-Parsing-and-Balance-Calculator API.</p>
         <p>Available routes:</p>
         <ul>
             <li><a href="/api/v1/upload" method="POST">Upload Data</a></li>
+            <p>RENDER - https://trade-parsing-and-balance-calculator-j7cy.onrender.com/api/v1/upload</p>
             <p>an API that accepts a CSV file as the input, parses the data present in it and stores it in a database</p>
             <li><a href="/api/v1/balance">Get Asset Balance</a></li>
+            <p>RENDER - https://trade-parsing-and-balance-calculator-j7cy.onrender.com/api/v1/balance</p>
             <p>an API that would give the asset-wise balance of the account at any given timestamp.</p>
         </ul>`
     );

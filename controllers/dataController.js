@@ -7,6 +7,7 @@ const uploadAndStoreCsvData = async (req, res) => {
     try {
         console.log("File uploaded successfully");
         const results = [];
+        // Code for uploading and storing CSV data
         const filename = path.join(__dirname, "../uploads", req.file.filename);
         fs.createReadStream(filename)
         .pipe(csvParser())
@@ -49,6 +50,7 @@ const uploadAndStoreCsvData = async (req, res) => {
         });
     });
     } catch (error) {
+        // Error handling for internal server error
         return res.status(500).json({
             success: false,
             message: "Internal Server Error",
@@ -59,6 +61,7 @@ const uploadAndStoreCsvData = async (req, res) => {
 
 const getAssetBalanceAtTimestamp = async (req, res) => {
     try {
+        // Code for fetching asset balance at given timestamp
         const timestamp = req.body.timestamp
         const allTransaction = await CsvData.find({})
         const req_utc_timestamp = new Date(timestamp)
@@ -78,6 +81,7 @@ const getAssetBalanceAtTimestamp = async (req, res) => {
             coins
         })
     } catch (error) {
+        // Error handling for internal server error
         return res.status(500).json({
             success: false,
             message: "Internal Server Error",
