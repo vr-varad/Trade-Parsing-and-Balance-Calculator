@@ -8,7 +8,7 @@ const uploadAndStoreCsvData = async (req, res) => {
         console.log("File uploaded successfully");
         const results = [];
         const filename = path.join(__dirname, "../uploads", req.file.filename);
-        const stream = fs.createReadStream(filename)
+        fs.createReadStream(filename)
         .pipe(csvParser())
         .on("data", (data) => results.push(data))
         .on("end", async() => {
@@ -41,7 +41,7 @@ const uploadAndStoreCsvData = async (req, res) => {
                 }
             })
         )
-        const allTransaction = await CsvData.find()
+        const allTransaction = await CsvData.find({}).sort({utc_timestamp : 1})
         return res.status(200).json({
             success: true,
             message: "Data Added Successfully!!",
