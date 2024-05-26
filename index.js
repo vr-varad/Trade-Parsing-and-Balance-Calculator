@@ -34,9 +34,11 @@ app.get('/',(req,res)=>{
         <ul>
             <li><a href="/api/v1/upload" method="POST">Upload Data</a></li>
             <p>RENDER - https://trade-parsing-and-balance-calculator-j7cy.onrender.com/api/v1/upload</p>
+            <p>AWS EC2 - http://ec2-65-2-149-225.ap-south-1.compute.amazonaws.com:3000/api/v1/upload </p>
             <p>an API that accepts a CSV file as the input, parses the data present in it and stores it in a database</p>
             <li><a href="/api/v1/balance">Get Asset Balance</a></li>
             <p>RENDER - https://trade-parsing-and-balance-calculator-j7cy.onrender.com/api/v1/balance</p>
+            <p>AWS EC2 - http://ec2-65-2-149-225.ap-south-1.compute.amazonaws.com:3000/api/v1/balance</p>
             <p>an API that would give the asset-wise balance of the account at any given timestamp.</p>
         </ul>`
     );
