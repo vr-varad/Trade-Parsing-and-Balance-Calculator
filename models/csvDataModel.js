@@ -15,7 +15,11 @@ const csvDataSchema = new Schema({
         type: String,
         required: true
     },
-    market: {
+    base_coin: {
+        type: String,
+        required: true
+    },
+    quote_coin : {
         type: String,
         required: true
     },
